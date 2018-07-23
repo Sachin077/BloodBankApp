@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1040647103871",
+    "firebase_url": "https://hackathon-blood.firebaseio.com",
+    "project_id": "hackathon-blood",
+    "storage_bucket": "hackathon-blood.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040647103871:android:0011c42a2923f5aa",
+        "android_client_info": {
+          "package_name": "com.bloodbank.app.bloodbankapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040647103871-m6ie449vamald9l2igta5640ibjfcll1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcOuKDaeSPKuLC4hCp2hzkAX6Gpn2P29Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
