@@ -10,15 +10,19 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Switch;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
     private Button btnRegistration;
-    private EditText reg_name,reg_location,reg_bloodGroup;
-    private Spinner bloodGroup;
+    private EditText fullNameReg,empIdReg,emailReg,phoneReg,addressReg;
+    private Spinner bloodGroupReg,cityReg;
+    private RadioGroup genderReg;
+    private Switch fitToDonateReg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +38,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                         .setAction("Action", null).show();
             }
         });
+
+        fullNameReg = (EditText) findViewById(R.id.fullNameReg);
 
     }
 

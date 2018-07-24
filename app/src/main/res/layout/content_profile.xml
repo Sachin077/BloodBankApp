@@ -9,7 +9,7 @@
     tools:showIn="@layout/activity_profile">
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/bloodGroupSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/addressET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
@@ -33,21 +33,21 @@
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/bloodGroupSpinner" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/deadlineET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="41dp"
         android:ems="10"
         android:hint="Deadline"
-        android:inputType="time"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        android:inputType="datetime"
+        app:layout_constraintStart_toStartOf="@+id/addressET"
+        app:layout_constraintTop_toBottomOf="@+id/addressET" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/provideCabSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -55,10 +55,10 @@
         android:text="Are you willing to provide cab?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/deadlineET" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/unitsET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
@@ -66,16 +66,17 @@
         android:ems="10"
         android:hint="Units of blood needed"
         android:inputType="number"
-        app:layout_constraintStart_toStartOf="@+id/switch1"
-        app:layout_constraintTop_toBottomOf="@+id/switch1" />
+        app:layout_constraintStart_toStartOf="@+id/provideCabSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/provideCabSwitch" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/storyET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:layout_marginTop="26dp"
         android:hint="Tell your story"
         android:inputType="textMultiLine"
-        tools:layout_editor_absoluteX="72dp"
-        tools:layout_editor_absoluteY="422dp" />
+        app:layout_constraintStart_toStartOf="@+id/unitsET"
+        app:layout_constraintTop_toBottomOf="@+id/unitsET" />
 </android.support.constraint.ConstraintLayout>
