@@ -42,7 +42,6 @@
             android:id="@+id/errorLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:text="Your username or password is incorrect!"
             android:layout_marginTop="12dp"
             android:textColor="@color/red"

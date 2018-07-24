@@ -1,10 +1,12 @@
 package com.bloodbank.app.bloodbankapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,20 +31,24 @@ public class SigninActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isAuthenticated =  checkAuthentication(email.getText().toString(),password.getText().toString());
-                if(isAuthenticated){
+                if(email.getText().toString().trim().length()>0  && password.getText().toString().length()>0){
+                    boolean isAuthenticated =  checkAuthentication(email.getText().toString(),password.getText().toString());
+                    if(isAuthenticated){
+                        Intent i = new Intent(SigninActivity.this,RoleActivity.class);
+                        startActivity(i);
+                    }
+                    else{
+                        error.setVisibility(View.VISIBLE);
+                    }
+                }
 
-                }
-                else{
-                    error.setVisibility(View.VISIBLE);
-                }
             }
         });
 
 
     }
     private boolean checkAuthentication(String email, String password){
-        return false;
+        return true;
     }
 
 }
