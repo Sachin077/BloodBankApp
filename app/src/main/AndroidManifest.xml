@@ -19,6 +19,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+            <activity
+            android:name=".DonorActivity"
+            android:label="@string/title_activity_donor"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+            <activity
+            android:name=".RequesterActivity"
+            android:label="@string/title_activity_requester"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".RegistrationActivity"
+            android:label="@string/title_activity_registration"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

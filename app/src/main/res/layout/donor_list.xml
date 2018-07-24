@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/row_padding_vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/row_padding_vertical"
+    android:elevation="20dp"
+    android:background="@color/white"
+    android:layout_marginTop="10dp">
+
+    <LinearLayout
+        android:id = "@+id/requestIdLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Request Id:" />
+        <TextView
+            android:id="@+id/requestId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/title"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id = "@+id/empNameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/requestIdLayout">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Employee Name:" />
+    <TextView
+        android:id="@+id/empName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id = "@+id/bloodGroupLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/empNameLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blood Group:" />
+
+        <TextView
+            android:id="@+id/bloodGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+             />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id = "@+id/locationLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bloodGroupLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location:" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id = "@+id/cabServiceLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/locationLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cab Service:" />
+
+        <TextView
+            android:id="@+id/cabService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id = "@+id/buttonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/cabServiceLayout"
+        android:layout_marginTop="10dp">
+        <Button
+            android:id="@+id/btnYes"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:background="@color/orange"
+            android:layout_marginRight="1dp"
+            android:text="Yes" />
+
+        <Button
+            android:id="@+id/btnNo"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:background="@color/orange"
+            android:layout_marginLeft="1dp"
+            android:text="No" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/requestIdLayout"
+        android:layout_below="@+id/empNameLayout"
+        android:layout_weight="1"
+        android:background="@color/orange"
+        android:text="Edit"
+        android:textColor="@color/white" />
+</RelativeLayout>
