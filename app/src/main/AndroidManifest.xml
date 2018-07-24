@@ -41,7 +41,7 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".ProfileActivity"
-            android:label="@string/title_activity_profile"
+            android:label="Create/Edit Request"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
