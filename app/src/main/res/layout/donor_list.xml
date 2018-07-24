@@ -148,6 +148,6 @@
         android:layout_below="@+id/empNameLayout"
         android:layout_weight="1"
         android:background="@color/orange"
-        android:text="Edit"
+        android:text="Status"
         android:textColor="@color/white" />
 </RelativeLayout>

@@ -4,4 +4,5 @@
     <string name="title_activity_donor">DonorActivity</string>
     <string name="title_activity_requester">RequesterActivity</string>
     <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="title_activity_requester_status">RequesterStatusActivity</string>
 </resources>
