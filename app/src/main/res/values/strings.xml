@@ -5,4 +5,17 @@
     <string name="title_activity_requester">RequesterActivity</string>
     <string name="title_activity_registration">RegistrationActivity</string>
     <string name="title_activity_requester_status">RequesterStatusActivity</string>
+    <string name="title_activity_role">RoleActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string-array name="blood_groups">
+        <item>A +ve</item>
+        <item>A -ve</item>
+        <item>B +ve</item>
+        <item>B -ve</item>
+        <item>AB +ve</item>
+        <item>AB -ve</item>
+        <item>O +ve</item>
+        <item>O -ve</item>
+    </string-array>
+    <string name="title_activity_account">AccountActivity</string>
 </resources>
