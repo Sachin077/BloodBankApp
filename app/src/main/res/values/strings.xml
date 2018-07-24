@@ -17,5 +17,14 @@
         <item>O +ve</item>
         <item>O -ve</item>
     </string-array>
+    <string-array name="cities">
+        <item>Hyderabad</item>
+        <item>Bangalore</item>
+        <item>Gurugram</item>
+        <item>Pune</item>
+        <item>Mumbai</item>
+    </string-array>
     <string name="title_activity_account">AccountActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_signin">SigninActivity</string>
 </resources>

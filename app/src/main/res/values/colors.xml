@@ -8,4 +8,5 @@
     <color name="white">#FFF</color>
     <color name="orange">#f15a22</color>
     <color name="lightBackground">#EEE</color>
+    <color name ="red">#FF0000</color>
 </resources>
