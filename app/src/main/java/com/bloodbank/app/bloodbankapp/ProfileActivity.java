@@ -1,11 +1,13 @@
 package com.bloodbank.app.bloodbankapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -18,6 +20,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ProfileActivity extends AppCompatActivity {
     private ActionBar actionBar;
     private Toolbar toolbar;
@@ -25,6 +31,7 @@ public class ProfileActivity extends AppCompatActivity {
     private Spinner bloodGroupSpinner;
     private EditText addressET, deadlineET, unitsET, storyET;
     private Switch provideCabSwitch;
+    private String email_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,22 +68,41 @@ public class ProfileActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        email_id = getIntent().getExtras().getString("email_id");
     }
 
     private void writeNewPost() {
-        String key = mDatabase.child("requests").push().getKey();
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("address", addressET.getText().toString());
-        result.put("deadline", deadlineET.getText().toString());
-        result.put("units", unitsET.getText().toString());
-        result.put("story", storyET.getText().toString());
-        result.put("bloodGroup", bloodGroupSpinner.getSelectedItem().toString());
-        result.put("provideCab", provideCabSwitch.isChecked());
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/requests/" + key, result);
-        mDatabase.updateChildren(childUpdates);
-        String some = mDatabase.child("requests").child("1").toString();
-        Toast.makeText(getApplicationContext(), some, Toast.LENGTH_SHORT).show();
+        RequesterRequest request = new RequesterRequest(email_id,bloodGroupSpinner.getSelectedItem().toString(),Integer.parseInt(unitsET.getText().toString()),addressET.getText().toString(),deadlineET.getText().toString(),storyET.getText().toString(),provideCabSwitch.isChecked());
+        register(request);
+    }
+
+    private void register(RequesterRequest request){
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+        Call<RequesterResponse> call = apiService.login(request);
+        call.enqueue(new Callback<RequesterResponse>() {
+                         @Override
+                         public void onResponse(Call<RequesterResponse> call, Response<RequesterResponse> response) {
+                             Log.d("response","Getting response from server : "+response);
+                             if(response.body().status){
+                                 Intent i = new Intent(getApplicationContext(), RequesterActivity.class);
+                                 startActivity(i);
+                             }
+                             else{
+
+                             }
+
+                         }
+
+                         @Override
+                         public void onFailure(Call<RequesterResponse> call, Throwable t) {
+                             Log.d("response","Getting response from server : "+t);
+
+                         }
+                     }
+        );
+
     }
 
 }

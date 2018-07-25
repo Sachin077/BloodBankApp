@@ -6,17 +6,19 @@ public class Request {
     private int requestId;
     private String location;
     private boolean isCabService;
+    private int status;
 
     public Request(){
 
     }
 
-    public Request(int requestId, String empName, String bloodGroup, String location, boolean isCabService){
+    public Request(int requestId, String empName, String bloodGroup, String location, boolean isCabService, int status){
         this.requestId = requestId;
         this.empName = empName;
         this.bloodGroup = bloodGroup;
         this.location = location;
         this.isCabService = isCabService;
+        this.status = status;
     }
 
     public int getRequestId(){
@@ -53,5 +55,12 @@ public class Request {
     }
     public void setCabService(boolean isCabService){
         this.isCabService = isCabService;
+    }
+
+    public int getStatus(){
+        return this.status;
+    }
+    public void setStatus(int status){
+        this.status = status;
     }
 }

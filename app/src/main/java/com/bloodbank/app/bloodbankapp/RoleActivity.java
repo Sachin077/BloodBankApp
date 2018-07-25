@@ -48,6 +48,7 @@ public class RoleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), DonorActivity.class);
+                i.putExtra("email_id",getIntent().getExtras().getString("email_id"));
                 startActivity(i);
             }
         });
@@ -57,6 +58,7 @@ public class RoleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), RequesterActivity.class);
+                i.putExtra("email_id",getIntent().getExtras().getString("email_id"));
                 startActivity(i);
             }
         });

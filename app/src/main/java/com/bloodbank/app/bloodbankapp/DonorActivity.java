@@ -19,7 +19,7 @@ import java.util.List;
 
 public class DonorActivity extends AppCompatActivity {
 
-    private List<Request> requestList = new ArrayList<>();
+    private List<CreatedRequestResponse> requestList = new ArrayList<>();
     private RecyclerView recyclerView;
     private RequestAdapter mAdapter;
     private ActionBar actionBar;
@@ -59,7 +59,7 @@ public class DonorActivity extends AppCompatActivity {
             @Override
             public void onPositionClicked(int position, int btnType) {
                 Log.d("returned to adapter", "onPositionClicked: "+position + " btn type is "+btnType);
-                Toast.makeText(getApplicationContext(), "btn type "+btnType+" with data  " + requestList.get(position).getEmpName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "btn type "+btnType+" with data  " , Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplicationContext(), RequesterActivity.class);
                 startActivity(i);
             }
@@ -71,19 +71,9 @@ public class DonorActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
         recyclerView.setHasFixedSize(true);
 
-        prepareRequestData();
+
     }
 
-    private void prepareRequestData() {
-        Request request1 = new Request(1,"test","a+","Kondapur",true);
-        requestList.add(request1);
-        Request request2 = new Request(2,"test2","b+","Kothaguda",false);
-        requestList.add(request2);
-        request2 = new Request(3,"test3","b+","Kothaguda",false);
-        requestList.add(request2);
-        request2 = new Request(4,"test4","b+","Kothaguda",false);
-        requestList.add(request2);
-        mAdapter.notifyDataSetChanged();
-    }
+
 
 }

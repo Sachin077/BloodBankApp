@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bloodbank.app.bloodbankapp">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,33 +11,33 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
+            android:label="Blood Book"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_role"
+            android:name=".ProfileActivity"
+            android:label="Create/Edit Request"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity
             android:name=".DonorActivity"
-            android:label="@string/title_activity_donor"
+            android:label="Donor"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RequesterActivity"
-            android:label="@string/title_activity_requester"
+            android:label="Requester"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RegistrationActivity"
-            android:label="@string/title_activity_registration"
+            android:label="Sign up"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RequesterStatusActivity"
-            android:label="@string/title_activity_requester_status"
+            android:label="Request Status"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ProfileActivity"
-            android:label="Create/Edit Request"
+            android:name=".LoginActivity"
+            android:label="Blood Book"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,11 +47,11 @@
         </activity>
         <activity
             android:name=".AccountActivity"
-            android:label="@string/title_activity_account"
+            android:label="Profile"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RoleActivity"
-            android:label="Role Activity"
+            android:label="Role"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--
             <activity
@@ -61,7 +61,7 @@
         -->
         <activity
             android:name=".SigninActivity"
-            android:label="@string/title_activity_signin"
+            android:label="Sign in"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

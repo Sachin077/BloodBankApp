@@ -1,5 +1,6 @@
 package com.bloodbank.app.bloodbankapp;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,24 +19,29 @@ import java.util.List;
 public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHolder> {
 
     private final ClickListener listener;
-    private List<Request> requestList;
+    public List<CreatedRequestResponse> requestList;
     private int type;
+    public Button btnYes,btnNo,btnEdit;
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public TextView requestId, empName, bloodGroup, location, isCabService;
+        public TextView requestId, empName, bloodGroup, location, isCabService, story, quantity,deadline,status;
         public LinearLayout buttoncontainer;
-        public Button btnYes,btnNo,btnEdit;
+
         private WeakReference<ClickListener> listenerRef;
 
         public MyViewHolder(View view, ClickListener listener) {
             super(view);
             listenerRef = new WeakReference<>(listener);
-            requestId = (TextView) view.findViewById(R.id.requestId);
-            empName = (TextView) view.findViewById(R.id.empName);
+            //requestId = (TextView) view.findViewById(R.id.requestId);
+            //empName = (TextView) view.findViewById(R.id.empName);
             bloodGroup = (TextView) view.findViewById(R.id.bloodGroup);
             location = (TextView) view.findViewById(R.id.location);
-            isCabService = (TextView) view.findViewById(R.id.cabService);
+            //isCabService = (TextView) view.findViewById(R.id.cabService);
             buttoncontainer = (LinearLayout)view.findViewById(R.id.buttonContainer);
+            story = (TextView) view.findViewById(R.id.story);
+            quantity = (TextView) view.findViewById(R.id.quantity1);
+            deadline = (TextView) view.findViewById(R.id.deadline);
+            status = (TextView) view.findViewById(R.id.status);
             btnEdit = (Button) view.findViewById(R.id.btnEdit);
             btnEdit.setOnClickListener(this);
             btnYes = (Button) view.findViewById(R.id.btnYes);
@@ -71,7 +77,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
     }
 
 
-    public RequestAdapter(List<Request> requestList, ClickListener clickListener, int type) {
+    public RequestAdapter(List<CreatedRequestResponse> requestList, ClickListener clickListener, int type) {
         this.requestList = requestList;
         this.listener = clickListener;
         this.type = type;
@@ -87,16 +93,28 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Request request = requestList.get(position);
-        holder.requestId.setText(request.getRequestId()+"");
-        holder.empName.setText(request.getEmpName());
-        holder.bloodGroup.setText(request.getBloodGroup());
-        holder.location.setText(request.getLocation());
-        if(request.getIsCabService()){
+        CreatedRequestResponse request = requestList.get(position);
+        //holder.requestId.setText(request.email_id);
+        //holder.empName.setText(request.location);
+        holder.bloodGroup.setText(request.blood_group);
+        holder.location.setText(request.location);
+        holder.story.setText(request.story);
+        holder.deadline.setText(request.deadline);
+        holder.quantity.setText(Integer.toString(request.quantity));
+        holder.status.setText(request.status);
+        /*if(request.provideCab){
             holder.isCabService.setText("Available");
         }
         else{
             holder.isCabService.setText("Not Available");
+        }*/
+        if(request.status.equals("Active") && type == Constants.DONOR){
+            btnEdit.setVisibility(View.VISIBLE);
+            btnYes.setVisibility(View.GONE);
+            btnNo.setVisibility(View.GONE);
+            btnEdit.setText("Who are joining");
+            btnEdit.setTextColor(Color.parseColor("#FFFFFF"));
+            btnEdit.setBackgroundColor(Color.parseColor("#008000"));
         }
     }
 

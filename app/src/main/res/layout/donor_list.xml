@@ -21,9 +21,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Request Id:" />
+            android:text="Blood Group:" />
         <TextView
-            android:id="@+id/requestId"
+            android:id="@+id/bloodGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -41,9 +41,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Employee Name:" />
+        android:text="Quantity:" />
     <TextView
-        android:id="@+id/empName"
+        android:id="@+id/quantity1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -61,10 +61,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Blood Group:" />
+            android:text="Location:" />
 
         <TextView
-            android:id="@+id/bloodGroup"
+            android:id="@+id/location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
@@ -81,10 +81,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Location:" />
+            android:text="Deadline:" />
 
         <TextView
-            android:id="@+id/location"
+            android:id="@+id/deadline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
@@ -101,10 +101,31 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cab Service:" />
+            android:text="Story:" />
 
         <TextView
-            android:id="@+id/cabService"
+            android:id="@+id/story"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id = "@+id/statuslayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cabServiceLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status:" />
+
+        <TextView
+            android:id="@+id/status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
@@ -116,7 +137,7 @@
         android:id = "@+id/buttonContainer"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@+id/cabServiceLayout"
+        android:layout_below="@+id/statuslayout"
         android:layout_marginTop="10dp">
         <Button
             android:id="@+id/btnYes"
