@@ -21,4 +21,13 @@ public interface ApiInterface {
 
     @GET("getRequestByUser/")
     Call<ArrayList<CreatedRequestResponse>> getRequestByUser(@Query("email_id") String email_id);
+
+    @GET("getResponsesByRequest/")
+    Call<ArrayList<DonorsInfoResponse>> getResponsesByRequest(@Query("request_id") int request_id);
+
+    @GET("queryRequestForDonor/")
+    Call<ArrayList<CreatedRequestResponse>> queryRequestForDonor(@Query("email_id") String email_id);
+
+    @POST("createResponse/")
+    Call<SigninResponse> createResponse(@Body CreateResponseRequest request);
 }

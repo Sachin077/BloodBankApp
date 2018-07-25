@@ -28,7 +28,7 @@ public class ProfileActivity extends AppCompatActivity {
     private ActionBar actionBar;
     private Toolbar toolbar;
     private DatabaseReference mDatabase;
-    private Spinner bloodGroupSpinner;
+    private Spinner bloodGroupSpinner,cityET;
     private EditText addressET, deadlineET, unitsET, storyET;
     private Switch provideCabSwitch;
     private String email_id;
@@ -47,6 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
         storyET = (EditText) findViewById(R.id.storyET);
         bloodGroupSpinner = (Spinner) findViewById(R.id.bloodGroupSpinner);
         provideCabSwitch = (Switch) findViewById(R.id.provideCabSwitch);
+        cityET = (Spinner) findViewById(R.id.cityET);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +74,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void writeNewPost() {
-        RequesterRequest request = new RequesterRequest(email_id,bloodGroupSpinner.getSelectedItem().toString(),Integer.parseInt(unitsET.getText().toString()),addressET.getText().toString(),deadlineET.getText().toString(),storyET.getText().toString(),provideCabSwitch.isChecked(), "Hyderabad");
+        RequesterRequest request = new RequesterRequest(email_id,bloodGroupSpinner.getSelectedItem().toString(),Integer.parseInt(unitsET.getText().toString()),addressET.getText().toString(),deadlineET.getText().toString(),storyET.getText().toString(),provideCabSwitch.isChecked(),cityET.getSelectedItem().toString());
         register(request);
     }
 

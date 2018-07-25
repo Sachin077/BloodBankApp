@@ -22,10 +22,12 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
     public List<CreatedRequestResponse> requestList;
     private int type;
     public Button btnYes,btnNo,btnEdit;
+    public TextView name,email,phone;
+    public LinearLayout buttoncontainer,emailLay,phoneLay,nameLay;
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView requestId, empName, bloodGroup, location, isCabService, story, quantity,deadline,status;
-        public LinearLayout buttoncontainer;
+
 
         private WeakReference<ClickListener> listenerRef;
 
@@ -42,6 +44,12 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
             quantity = (TextView) view.findViewById(R.id.quantity1);
             deadline = (TextView) view.findViewById(R.id.deadline);
             status = (TextView) view.findViewById(R.id.status);
+            name = (TextView) view.findViewById(R.id.namedonor);
+            email = (TextView) view.findViewById(R.id.emailId);
+            phone = (TextView) view.findViewById(R.id.phonedonor);
+            emailLay = (LinearLayout) view.findViewById(R.id.emailIdlayout);
+            phoneLay = (LinearLayout) view.findViewById(R.id.phonelayout);
+            nameLay = (LinearLayout) view.findViewById(R.id.namelayout);
             btnEdit = (Button) view.findViewById(R.id.btnEdit);
             btnEdit.setOnClickListener(this);
             btnYes = (Button) view.findViewById(R.id.btnYes);
@@ -108,14 +116,31 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
         else{
             holder.isCabService.setText("Not Available");
         }*/
-        if(request.status.equals("Active") && type == Constants.DONOR){
+        if(request.user_response && type == Constants.DONOR){
             btnEdit.setVisibility(View.VISIBLE);
             btnYes.setVisibility(View.GONE);
             btnNo.setVisibility(View.GONE);
-            btnEdit.setText("Who are joining");
+            buttoncontainer.setVisibility(View.GONE);
+            btnEdit.setText("Others donating");
             btnEdit.setTextColor(Color.parseColor("#FFFFFF"));
             btnEdit.setBackgroundColor(Color.parseColor("#008000"));
         }
+
+        if(type == Constants.REQUESTER){
+            name.setVisibility(View.GONE);
+            email.setVisibility(View.GONE);
+            phone.setVisibility(View.GONE);
+            emailLay.setVisibility(View.GONE);
+            phoneLay.setVisibility(View.GONE);
+            nameLay.setVisibility(View.GONE);
+        }
+        else{
+            name.setText(request.name);
+            email.setText(request.email_id);
+            phone.setText(request.phone);
+        }
+
+
     }
 
     @Override

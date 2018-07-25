@@ -12,6 +12,9 @@ public class CreatedRequestResponse {
     public String status;
     public String feedback;
     public String city;
-
+    public int id;
+    public String name;
+    public String phone;
+    public boolean user_response;
 
 }

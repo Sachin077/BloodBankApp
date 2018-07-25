@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="10dp"
+    android:background="@color/white">
     <LinearLayout
         android:id = "@+id/status_empLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -22,17 +26,60 @@
             android:layout_marginLeft="20dp"/>
     </LinearLayout>
     <LinearLayout
-        android:id = "@+id/status_locationLayout"
+        android:id = "@+id/status_emailLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below = "@id/status_empLayout"
+        android:orientation="horizontal"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Employee Name:" />
+            android:text="Email id:" />
         <TextView
-            android:id="@+id/status_location"
+            android:id="@+id/status_emailId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/title"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id = "@+id/status_phonelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below = "@id/status_emailLayout"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone number:" />
+        <TextView
+            android:id="@+id/status_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/title"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id = "@+id/status_cablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below = "@id/status_phonelayout"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cab:" />
+        <TextView
+            android:id="@+id/status_cab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"

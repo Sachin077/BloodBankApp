@@ -11,22 +11,23 @@ import android.widget.TextView;
 import java.util.List;
 
 public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.MyViewHolder>{
-    private List<Status> statusList;
+    public List<DonorsInfoResponse> statusList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        public TextView  empName, location;
+        public TextView  email,name,phone,cab;
 
         public MyViewHolder(View view) {
             super(view);
-            empName = (TextView) view.findViewById(R.id.status_empName);
-            location = (TextView) view.findViewById(R.id.status_location);
-
+            email = (TextView) view.findViewById(R.id.status_emailId);
+            name = (TextView) view.findViewById(R.id.status_empName);
+            phone = (TextView) view.findViewById(R.id.status_phone);
+            cab = (TextView) view.findViewById(R.id.status_cab);
         }
 
     }
 
 
-    public StatusAdapter(List<Status> statusList) {
+    public StatusAdapter(List<DonorsInfoResponse> statusList) {
         this.statusList = statusList;
 
     }
@@ -41,9 +42,16 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Status status = statusList.get(position);
-        holder.empName.setText(status.getEmpName());
-        holder.location.setText(status.getlocation());
+        DonorsInfoResponse status = statusList.get(position);
+        holder.email.setText(status.email_id);
+        holder.name.setText(status.name);
+        holder.phone.setText(status.phone);
+        if(status.cab_needed){
+            holder.cab.setText("Needed");
+        }
+        else{
+            holder.cab.setText("Not Needed");
+        }
 
     }
 

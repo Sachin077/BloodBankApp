@@ -65,6 +65,7 @@ public class RequesterActivity extends AppCompatActivity {
                 Log.d("returned to adapter", "onPositionClicked: "+position + " btn type is "+btnType);
                 Toast.makeText(getApplicationContext(), "btn type "+btnType+" with data  ", Toast.LENGTH_SHORT).show();
                 Intent i =new Intent(getApplicationContext(),RequesterStatusActivity.class);
+                i.putExtra("request_id",requestList.get(position).id);
                 startActivity(i);
             }
         },Constants.REQUESTER);

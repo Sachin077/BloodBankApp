@@ -17,10 +17,14 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class RequesterStatusActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private StatusAdapter statusAdapter;
-    private List<Status> statusList = new ArrayList<Status>();
+    private List<DonorsInfoResponse> statusList = new ArrayList<DonorsInfoResponse>();
     private ActionBar actionBar;
     private Toolbar toolbar;
     @Override
@@ -60,13 +64,47 @@ public class RequesterStatusActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(statusAdapter);
         recyclerView.setHasFixedSize(true);
-        setStatusData();
+        //setStatusData();
+
+        getRequest(getIntent().getExtras().getInt("request_id"));
     }
 
-    private void setStatusData(){
+    /*private void setStatusData(){
         Status status1 = new Status("Test","testloc");
         statusList.add(status1);
         statusAdapter.notifyDataSetChanged();
+    }*/
+
+    private void getRequest(int request_id){
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+        try {
+            Call<ArrayList<DonorsInfoResponse>> call = apiService.getResponsesByRequest(request_id);
+            call.enqueue(new Callback<ArrayList<DonorsInfoResponse>>() {
+                             @Override
+                             public void onResponse(Call<ArrayList<DonorsInfoResponse>> call, Response<ArrayList<DonorsInfoResponse>> response) {
+                                 Log.d("response", "Getting response from server : " + response);
+                                 if (response.body() != null) {
+                                     statusList = response.body();
+                                     statusAdapter.statusList = statusList;
+                                     statusAdapter.notifyDataSetChanged();
+                                 } else {
+
+                                 }
+
+                             }
+
+                             @Override
+                             public void onFailure(Call<ArrayList<DonorsInfoResponse>> call, Throwable t) {
+                                 Log.d("response", "Getting response from server : " + t);
+
+                             }
+                         }
+            );
+        }
+        catch (Exception ex) {
+            Log.d("Exception in reading: " , ex.getStackTrace().toString());
+        }
     }
 
 }

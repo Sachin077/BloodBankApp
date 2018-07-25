@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="40dp"
         android:entries="@array/blood_groups"
         android:spinnerMode="dialog"
         android:visibility="visible"
@@ -27,7 +27,7 @@
         android:id="@+id/addressET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Address"
         android:inputType="textPostalAddress"
@@ -35,22 +35,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bloodGroupSpinner" />
 
+    <Spinner
+        android:id="@+id/cityET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:entries="@array/cities"
+        android:spinnerMode="dialog"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/addressET"
+        app:layout_constraintTop_toBottomOf="@+id/addressET" />
+
     <EditText
         android:id="@+id/deadlineET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Deadline"
         android:inputType="datetime"
-        app:layout_constraintStart_toStartOf="@+id/addressET"
-        app:layout_constraintTop_toBottomOf="@+id/addressET" />
+        app:layout_constraintStart_toStartOf="@+id/cityET"
+        app:layout_constraintTop_toBottomOf="@+id/cityET" />
 
     <Switch
         android:id="@+id/provideCabSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:switchTextAppearance="@style/TextAppearance.AppCompat"
         android:text="Are you willing to provide cab?"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Units of blood needed"
         android:inputType="number"
@@ -74,9 +85,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="20dp"
         android:hint="Tell your story"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="@+id/unitsET"
         app:layout_constraintTop_toBottomOf="@+id/unitsET" />
+
+
 </android.support.constraint.ConstraintLayout>
