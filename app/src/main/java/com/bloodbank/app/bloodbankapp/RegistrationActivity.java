@@ -2,6 +2,7 @@ package com.bloodbank.app.bloodbankapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +36,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     private Spinner bloodGroupReg,cityReg;
     private RadioGroup genderReg;
     private Switch fitToDonateReg;
+    private String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +44,29 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            //Log.w(TAG, "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        token = task.getResult().getToken();
+
+                        // Log and toast
+                        Log.d("MyActivity", token);
+                    }
+                });
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 RadioButton btn = (RadioButton) findViewById(genderReg.getCheckedRadioButtonId());
-                SignupRequest request = new SignupRequest(Long.parseLong(empIdReg.getText().toString()),emailReg.getText().toString(),fullNameReg.getText().toString(),Long.parseLong(phoneReg.getText().toString()),btn.getText().toString(),bloodGroupReg.getSelectedItem().toString(),addressReg.getText().toString(),cityReg.getSelectedItem().toString() ,fitToDonateReg.isChecked(),"pass123");
+                SignupRequest request = new SignupRequest(Long.parseLong(empIdReg.getText().toString()),emailReg.getText().toString(),fullNameReg.getText().toString(),Long.parseLong(phoneReg.getText().toString()),btn.getText().toString(),bloodGroupReg.getSelectedItem().toString(),addressReg.getText().toString(),cityReg.getSelectedItem().toString() ,fitToDonateReg.isChecked(),"pass123", token);
                 register(request);
             }
         });

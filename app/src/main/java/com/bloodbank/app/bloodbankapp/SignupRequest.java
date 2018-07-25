@@ -11,9 +11,10 @@ public class SignupRequest {
     public String city;
     public boolean fit_for_donation;
     public String password;
+    public String token;
 
 
-    public SignupRequest(long emp_id,String email_id, String full_name,long phone,String gender, String blood_group, String address, String city, boolean fit_for_donation, String password){
+    public SignupRequest(long emp_id,String email_id, String full_name,long phone,String gender, String blood_group, String address, String city, boolean fit_for_donation, String password, String token){
         this.email_id = email_id;
         this.emp_id = emp_id;
         this.address=address;
@@ -24,6 +25,7 @@ public class SignupRequest {
         this.fit_for_donation = fit_for_donation;
         this.name = full_name;
         this.phone = phone;
+        this.token = token;
     }
 
 }

@@ -73,7 +73,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void writeNewPost() {
-        RequesterRequest request = new RequesterRequest(email_id,bloodGroupSpinner.getSelectedItem().toString(),Integer.parseInt(unitsET.getText().toString()),addressET.getText().toString(),deadlineET.getText().toString(),storyET.getText().toString(),provideCabSwitch.isChecked());
+        RequesterRequest request = new RequesterRequest(email_id,bloodGroupSpinner.getSelectedItem().toString(),Integer.parseInt(unitsET.getText().toString()),addressET.getText().toString(),deadlineET.getText().toString(),storyET.getText().toString(),provideCabSwitch.isChecked(), "Hyderabad");
         register(request);
     }
 

@@ -10,8 +10,9 @@ public class RequesterRequest {
     private String deadline;
     private String story;
     private boolean provideCab;
+    private String city;
 
-    public RequesterRequest(String email_id,String blood_group, int quantity,String location, String deadline, String story, boolean provideCab){
+    public RequesterRequest(String email_id,String blood_group, int quantity,String location, String deadline, String story, boolean provideCab, String city){
         this.email_id = email_id;
         this.blood_group = blood_group;
         this.quantity = quantity;
@@ -19,6 +20,7 @@ public class RequesterRequest {
         this.deadline = deadline;
         this.story = story;
         this.provideCab = provideCab;
+        this.city = city;
     }
 
 }
