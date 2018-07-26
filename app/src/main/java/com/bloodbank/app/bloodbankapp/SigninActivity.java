@@ -1,6 +1,8 @@
 package com.bloodbank.app.bloodbankapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Movie;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -71,6 +73,15 @@ public class SigninActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        // code here to show dialog
+        //super.onBackPressed();  // optional depending on your needs
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+    }
+
 
     private void checkAuthentication(final String email, String password){
         ApiInterface apiService =
@@ -83,8 +94,11 @@ public class SigninActivity extends AppCompatActivity {
                              Log.d("response","Getting response from server : "+response);
                              if(response.body().status){
                                  Intent i = new Intent(SigninActivity.this,RoleActivity.class);
-                                 i.putExtra("email_id",email);
+                                 //i.putExtra("email_id",email);
+                                 SharedPreferences sharedpreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+                                 sharedpreferences.edit().putString("email_id",email).commit();
                                  startActivity(i);
+
                                  error.setVisibility(View.GONE);
                              }
                              else{

@@ -1,6 +1,8 @@
 package com.bloodbank.app.bloodbankapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -49,6 +51,9 @@ public class ProfileActivity extends AppCompatActivity {
         provideCabSwitch = (Switch) findViewById(R.id.provideCabSwitch);
         cityET = (Spinner) findViewById(R.id.cityET);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        email_id=sharedPreferences.getString("email_id",email_id);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +75,9 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        email_id = getIntent().getExtras().getString("email_id");
+
+
+        //email_id = getIntent().getExtras().getString("email_id");
     }
 
     private void writeNewPost() {
@@ -81,28 +88,35 @@ public class ProfileActivity extends AppCompatActivity {
     private void register(RequesterRequest request){
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
-        Call<RequesterResponse> call = apiService.login(request);
-        call.enqueue(new Callback<RequesterResponse>() {
-                         @Override
-                         public void onResponse(Call<RequesterResponse> call, Response<RequesterResponse> response) {
-                             Log.d("response","Getting response from server : "+response);
-                             if(response.body().status){
-                                 Intent i = new Intent(getApplicationContext(), RequesterActivity.class);
-                                 startActivity(i);
-                             }
-                             else{
+        try{
+            Call<RequesterResponse> call = apiService.login(request);
+            call.enqueue(new Callback<RequesterResponse>() {
+                             @Override
+                             public void onResponse(Call<RequesterResponse> call, Response<RequesterResponse> response) {
+                                 Log.d("response","Getting response from server : "+response);
+                                 if(response.body().status){
+                                     Intent i = new Intent(getApplicationContext(), RequesterActivity.class);
+                                     //i.putExtra("email_id", email_id);
+                                     startActivity(i);
+                                 }
+                                 else{
+
+                                 }
 
                              }
 
-                         }
+                             @Override
+                             public void onFailure(Call<RequesterResponse> call, Throwable t) {
+                                 Log.d("response","Getting response from server : "+t);
 
-                         @Override
-                         public void onFailure(Call<RequesterResponse> call, Throwable t) {
-                             Log.d("response","Getting response from server : "+t);
-
+                             }
                          }
-                     }
-        );
+            );
+        }
+        catch(Exception ex){
+            Log.d("request","Getting response from server : "+ex.getStackTrace().toString());
+        }
+
 
     }
 
