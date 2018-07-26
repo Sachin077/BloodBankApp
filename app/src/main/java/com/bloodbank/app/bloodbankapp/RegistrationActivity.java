@@ -35,7 +35,7 @@ import retrofit2.Response;
 
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
     private Button btnRegistration;
-    private EditText fullNameReg,empIdReg,emailReg,phoneReg,addressReg;
+    private EditText fullNameReg,empIdReg,emailReg,phoneReg,addressReg, passwordReg;
     private Spinner bloodGroupReg,cityReg;
     private RadioGroup genderReg;
     private Switch fitToDonateReg;
@@ -79,7 +79,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onClick(View view) {
                 RadioButton btn = (RadioButton) findViewById(genderReg.getCheckedRadioButtonId());
-                SignupRequest request = new SignupRequest(Long.parseLong(empIdReg.getText().toString()),emailReg.getText().toString(),fullNameReg.getText().toString(),Long.parseLong(phoneReg.getText().toString()),btn.getText().toString(),bloodGroupReg.getSelectedItem().toString(),addressReg.getText().toString(),cityReg.getSelectedItem().toString() ,fitToDonateReg.isChecked(),"pass123", token);
+                SignupRequest request = new SignupRequest(Long.parseLong(empIdReg.getText().toString()),emailReg.getText().toString(), fullNameReg.getText().toString(),Long.parseLong(phoneReg.getText().toString()),btn.getText().toString(),bloodGroupReg.getSelectedItem().toString(),addressReg.getText().toString(),cityReg.getSelectedItem().toString() ,fitToDonateReg.isChecked(), passwordReg.getText().toString(), token);
                 register(request);
             }
         });
@@ -87,6 +87,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         fullNameReg = (EditText) findViewById(R.id.fullNameReg);
         empIdReg = (EditText) findViewById(R.id.EmpIdReg);
         emailReg = (EditText) findViewById(R.id.emailReg);
+        passwordReg = (EditText) findViewById(R.id.passwordReg);
         phoneReg = (EditText) findViewById(R.id.phoneReg);
         bloodGroupReg = (Spinner) findViewById(R.id.bloodGrpReg);
         genderReg = (RadioGroup) findViewById(R.id.genderGroupReg);
