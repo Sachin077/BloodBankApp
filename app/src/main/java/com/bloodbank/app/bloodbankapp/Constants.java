@@ -6,4 +6,5 @@ public class Constants {
     public static final int YES = 3;
     public static final int NO = 4;
     public static final int EDIT = 5;
+    public static final int EDIT1 = 6;
 }

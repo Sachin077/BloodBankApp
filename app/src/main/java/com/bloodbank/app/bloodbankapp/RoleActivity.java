@@ -64,4 +64,13 @@ public class RoleActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        // code here to show dialog
+        //super.onBackPressed();  // optional depending on your needs
+        Intent i = new Intent(getApplicationContext(), SigninActivity.class);
+        startActivity(i);
+    }
+
 }

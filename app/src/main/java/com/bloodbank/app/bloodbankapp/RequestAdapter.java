@@ -70,11 +70,9 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
         public void onClick(View view) {
             Log.d("myTag", "onClick: "+view.getId());
             if(view.getId() == btnYes.getId()){
-                Toast.makeText(view.getContext(), "ITEM PRESSED Yes = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
                 listenerRef.get().onPositionClicked(getAdapterPosition(), Constants.YES);
             }
             else if(view.getId() == btnNo.getId()){
-                Toast.makeText(view.getContext(), "ITEM PRESSED No = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
                 listenerRef.get().onPositionClicked(getAdapterPosition(), Constants.NO);
             }
             else if(view.getId() == btnEdit.getId()){
@@ -116,7 +114,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
         else{
             holder.isCabService.setText("Not Available");
         }*/
-        if(request.user_response && type == Constants.DONOR){
+        if(request.user_response!=null && request.user_response && type == Constants.DONOR){
             btnEdit.setVisibility(View.VISIBLE);
             btnYes.setVisibility(View.GONE);
             btnNo.setVisibility(View.GONE);

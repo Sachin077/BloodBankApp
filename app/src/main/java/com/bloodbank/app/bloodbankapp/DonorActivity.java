@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class DonorActivity extends AppCompatActivity {
     private int positionInArray;
     private boolean responseType;
     private String email_id;
+    private TextView empty_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,9 @@ public class DonorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_donor);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        final SharedPreferences sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        email_id=sharedPreferences.getString("email_id",email_id);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabProfile);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -68,31 +73,39 @@ public class DonorActivity extends AppCompatActivity {
             @Override
             public void onPositionClicked(int position, int btnType) {
                 Log.d("returned to adapter", "onPositionClicked: "+position + " btn type is "+btnType);
-                CreateResponseRequest request = new CreateResponseRequest();
-                request.email_id = email_id;
-                positionInArray = position;
+                if(btnType != Constants.EDIT){
+                    CreateResponseRequest request = new CreateResponseRequest();
+                    request.email_id = email_id;
+                    positionInArray = position;
 
-                //request.email_id = "yo1@yolo.com";
-                if(btnType == Constants.YES){
-                    request.user_response = true;
+                    //request.email_id = "yo1@yolo.com";
+                    if(btnType == Constants.YES){
+                        request.user_response = true;
+                    }
+                    else {
+                        request.user_response = false;
+                    }
+                    responseType = request.user_response;
+                    request.request_id = requestList.get(position).id;
+                    createResponse(request);
                 }
-                else {
-                    request.user_response = false;
+                else{
+                    Intent nextIntent = new Intent(getApplicationContext(), OtherDonatingAcitvity.class);
+                    sharedPreferences.edit().putInt("request_id",requestList.get(position).id);
+                    startActivity(nextIntent);
                 }
-                responseType = request.user_response;
-                request.request_id = requestList.get(position).id;
-                createResponse(request);
+
             }
         },Constants.DONOR);
+        recyclerView.setAdapter(mAdapter);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         //recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL, 16));
-        recyclerView.setAdapter(mAdapter);
-        recyclerView.setHasFixedSize(true);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
-        email_id=sharedPreferences.getString("email_id",email_id);
+        recyclerView.setHasFixedSize(true);
+        empty_view = (TextView) findViewById(R.id.empty_view);
+
 
         getRequest(email_id);
         //getRequest("yo1@yolo.com");
@@ -121,9 +134,18 @@ public class DonorActivity extends AppCompatActivity {
                                      ArrayList<CreatedRequestResponse> dupRequest = new ArrayList<>();
                                      dupRequest = requestList;
                                      for(int i=0;i<dupRequest.size();i++){
-                                          if(!dupRequest.get(i).user_response){
+                                          if(dupRequest.get(i).user_response!=null && !dupRequest.get(i).user_response){
                                               requestList.remove(i);
                                           }
+                                     }
+                                     if(requestList.size()==0){
+                                         empty_view.setVisibility(View.VISIBLE);
+                                         empty_view.setText("No requests are pending");
+                                         recyclerView.setVisibility(View.GONE);
+                                     }
+                                     else{
+                                         empty_view.setVisibility(View.GONE);
+                                         recyclerView.setVisibility(View.VISIBLE);
                                      }
                                      mAdapter.requestList = requestList;
                                      mAdapter.notifyDataSetChanged();

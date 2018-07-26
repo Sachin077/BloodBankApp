@@ -15,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,26 +23,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RequesterStatusActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
-    private StatusAdapter statusAdapter;
-    private List<DonorsInfoResponse> statusList = new ArrayList<DonorsInfoResponse>();
-    private ActionBar actionBar;
-    private Toolbar toolbar;
+public class OtherDonatingAcitvity extends AppCompatActivity {
     private String email_id;
     private int request_id;
+    private ActionBar actionBar;
+    private RecyclerView recyclerView;
+    private StatusAdapter statusAdapter;
     private TextView empty_view;
+    private List<DonorsInfoResponse> statusList = new ArrayList<DonorsInfoResponse>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_requester_status);
+        setContentView(R.layout.activity_other_donating_acitvity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        SharedPreferences sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
-        email_id=sharedPreferences.getString("email_id",email_id);
-        request_id = sharedPreferences.getInt("request_id",0);
-
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -55,6 +48,10 @@ public class RequesterStatusActivity extends AppCompatActivity {
             }
         });
 
+        SharedPreferences sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        email_id=sharedPreferences.getString("email_id",email_id);
+        request_id = sharedPreferences.getInt("request_id",0);
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_status);
         Log.d("recyclerView", "onCreate: "+ recyclerView);
         statusAdapter = new StatusAdapter(statusList);
@@ -64,7 +61,7 @@ public class RequesterStatusActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         recyclerView.setHasFixedSize(true);
-        //setStatusData();
+
         empty_view = (TextView) findViewById(R.id.empty_view);
 
         getRequest(request_id);
@@ -75,15 +72,9 @@ public class RequesterStatusActivity extends AppCompatActivity {
     {
         // code here to show dialog
         //super.onBackPressed();  // optional depending on your needs
-        Intent i = new Intent(this, RequesterActivity.class);
+        Intent i = new Intent(this, DonorActivity.class);
         startActivity(i);
     }
-
-    /*private void setStatusData(){
-        Status status1 = new Status("Test","testloc");
-        statusList.add(status1);
-        statusAdapter.notifyDataSetChanged();
-    }*/
 
     private void getRequest(int request_id){
         ApiInterface apiService =
@@ -96,14 +87,20 @@ public class RequesterStatusActivity extends AppCompatActivity {
                                  Log.d("response", "Getting response from server : " + response);
                                  if (response.body() != null) {
                                      statusList = response.body();
+                                     List<DonorsInfoResponse> dupstatusList = new ArrayList<DonorsInfoResponse>();
+                                     dupstatusList = statusList;
+                                     for(int i=0;i<dupstatusList.size();i++){
+                                         if(dupstatusList.get(i).email_id.equals(email_id)){
+                                             statusList.remove(i);
+                                         }
+                                     }
                                      if(statusList.size() == 0){
-                                         empty_view.setText("No one has accepted the request yet.");
+                                         empty_view.setText("Currently no other donors found");
                                          recyclerView.setVisibility(View.GONE);
-                                         empty_view.setVisibility(View.VISIBLE);
                                      }
                                      else{
-                                         recyclerView.setVisibility(View.VISIBLE);
                                          empty_view.setVisibility(View.GONE);
+                                         recyclerView.setVisibility(View.VISIBLE);
                                      }
                                      statusAdapter.statusList = statusList;
                                      statusAdapter.notifyDataSetChanged();

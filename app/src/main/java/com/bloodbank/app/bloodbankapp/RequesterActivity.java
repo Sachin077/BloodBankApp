@@ -15,7 +15,10 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,7 @@ public class RequesterActivity extends AppCompatActivity {
     private ActionBar actionBar;
     private Toolbar toolbar;
     private String email_id;
+    private TextView empty_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,18 +73,19 @@ public class RequesterActivity extends AppCompatActivity {
             @Override
             public void onPositionClicked(int position, int btnType) {
                 Log.d("returned to adapter", "onPositionClicked: "+position + " btn type is "+btnType);
-                Toast.makeText(getApplicationContext(), "btn type "+btnType+" with data  ", Toast.LENGTH_SHORT).show();
                 Intent i =new Intent(getApplicationContext(),RequesterStatusActivity.class);
                 sharedPreferences.edit().putInt("request_id",requestList.get(position).id).commit();
                 startActivity(i);
             }
         },Constants.REQUESTER);
+        recyclerView.setAdapter(mAdapter);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         //recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL, 16));
-        recyclerView.setAdapter(mAdapter);
+
         recyclerView.setHasFixedSize(true);
+        empty_view = (TextView) findViewById(R.id.empty_view);
 
         getRequest(email_id);
         //getRequest("yo1@yolo.com");
@@ -104,7 +109,7 @@ public class RequesterActivity extends AppCompatActivity {
     }
 
 
-    private void getRequest(String email_id){
+    private void getRequest(final String email_id){
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
         try {
@@ -115,6 +120,15 @@ public class RequesterActivity extends AppCompatActivity {
                                  Log.d("response", "Getting response from server : " + response);
                                  if (response.body() != null) {
                                      requestList = response.body();
+                                     if(requestList.size() == 0){
+                                         empty_view.setText("You have not made any request");
+                                         recyclerView.setVisibility(View.GONE);
+                                         empty_view.setVisibility(View.VISIBLE);
+                                     }
+                                     else{
+                                         recyclerView.setVisibility(View.VISIBLE);
+                                         empty_view.setVisibility(View.GONE);
+                                     }
                                      mAdapter.requestList = requestList;
                                      mAdapter.notifyDataSetChanged();
                                  } else {

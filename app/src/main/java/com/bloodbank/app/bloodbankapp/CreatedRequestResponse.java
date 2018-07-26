@@ -15,6 +15,6 @@ public class CreatedRequestResponse {
     public int id;
     public String name;
     public String phone;
-    public boolean user_response;
+    public Boolean user_response;
 
 }

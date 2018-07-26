@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bloodbank.app.bloodbankapp">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,12 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service
-            android:name=".FcmInstanceIdService">
+        <service android:name=".FcmInstanceIdService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <activity
             android:name=".MainActivity"
             android:label="Blood Book"
@@ -22,9 +24,7 @@
         <activity
             android:name=".ProfileActivity"
             android:label="Create/Edit Request"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".DonorActivity"
             android:label="Donor"
@@ -68,6 +68,10 @@
         <activity
             android:name=".SigninActivity"
             android:label="Sign in"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".OtherDonatingAcitvity"
+            android:label="Other donors"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
