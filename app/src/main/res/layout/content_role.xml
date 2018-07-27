@@ -8,41 +8,31 @@
     tools:context=".RoleActivity"
     tools:showIn="@layout/activity_role">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:layout_marginTop="100dp"
-        android:text="Move Forward as:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnDonor"
         style="@android:style/Widget.DeviceDefault.Light.Button"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="176dp"
         android:background="@color/orange"
         android:text="Donor"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnRequester"
         style="@android:style/Widget.DeviceDefault.Light.Button.Borderless.Small"
-        android:layout_width="89dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="43dp"
         android:background="@color/orange"
         android:textColor="@color/white"
-        android:text="Requester"
+        android:text="Request for blood"
         app:layout_constraintStart_toStartOf="@+id/btnDonor"
         app:layout_constraintTop_toBottomOf="@+id/btnDonor" />
 </android.support.constraint.ConstraintLayout>

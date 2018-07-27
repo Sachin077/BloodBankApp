@@ -27,11 +27,11 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".DonorActivity"
-            android:label="Donor"
+            android:label="Blood requests for you"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RequesterActivity"
-            android:label="Requester"
+            android:label="My requests"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RegistrationActivity"
@@ -39,7 +39,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RequesterStatusActivity"
-            android:label="Request Status"
+            android:label="Accepted donors"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LoginActivity"
@@ -57,7 +57,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RoleActivity"
-            android:label="Role"
+            android:label="Act as"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--
             <activity

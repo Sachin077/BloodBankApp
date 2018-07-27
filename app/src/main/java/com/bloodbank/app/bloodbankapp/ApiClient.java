@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    public static final String BASE_URL = "http://10.104.255.201:9595/";
+    public static final String BASE_URL = "http://10.104.253.26:9595/";
     private static Retrofit retrofit = null;
 
 

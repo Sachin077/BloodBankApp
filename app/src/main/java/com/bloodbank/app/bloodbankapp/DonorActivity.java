@@ -91,7 +91,7 @@ public class DonorActivity extends AppCompatActivity {
                 }
                 else{
                     Intent nextIntent = new Intent(getApplicationContext(), OtherDonatingAcitvity.class);
-                    sharedPreferences.edit().putInt("request_id",requestList.get(position).id);
+                    sharedPreferences.edit().putInt("request_id",requestList.get(position).id).commit();
                     startActivity(nextIntent);
                 }
 
@@ -120,7 +120,7 @@ public class DonorActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private void getRequest(String email_id){
+    private void getRequest(final String email_id){
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
         try {
@@ -132,13 +132,13 @@ public class DonorActivity extends AppCompatActivity {
                                  if (response.body() != null) {
                                      requestList = response.body();
                                      ArrayList<CreatedRequestResponse> dupRequest = new ArrayList<>();
-                                     dupRequest = requestList;
-                                     for(int i=0;i<dupRequest.size();i++){
-                                          if(dupRequest.get(i).user_response!=null && !dupRequest.get(i).user_response){
-                                              requestList.remove(i);
+
+                                     for(int i=0;i<requestList.size();i++){
+                                          if(!(requestList.get(i).email_id.equals(email_id) || (requestList.get(i).user_response!=null && !requestList.get(i).user_response))){
+                                            dupRequest.add(requestList.get(i));
                                           }
                                      }
-                                     if(requestList.size()==0){
+                                     if(dupRequest.size()==0){
                                          empty_view.setVisibility(View.VISIBLE);
                                          empty_view.setText("No requests are pending");
                                          recyclerView.setVisibility(View.GONE);
@@ -147,7 +147,7 @@ public class DonorActivity extends AppCompatActivity {
                                          empty_view.setVisibility(View.GONE);
                                          recyclerView.setVisibility(View.VISIBLE);
                                      }
-                                     mAdapter.requestList = requestList;
+                                     mAdapter.requestList = dupRequest;
                                      mAdapter.notifyDataSetChanged();
                                  } else {
 

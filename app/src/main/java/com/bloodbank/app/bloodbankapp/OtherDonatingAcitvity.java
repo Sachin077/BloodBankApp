@@ -88,13 +88,13 @@ public class OtherDonatingAcitvity extends AppCompatActivity {
                                  if (response.body() != null) {
                                      statusList = response.body();
                                      List<DonorsInfoResponse> dupstatusList = new ArrayList<DonorsInfoResponse>();
-                                     dupstatusList = statusList;
-                                     for(int i=0;i<dupstatusList.size();i++){
-                                         if(dupstatusList.get(i).email_id.equals(email_id)){
-                                             statusList.remove(i);
+
+                                     for(int i=0;i<statusList.size();i++){
+                                         if(!statusList.get(i).email_id.equals(email_id)){
+                                             dupstatusList.add(statusList.get(i));
                                          }
                                      }
-                                     if(statusList.size() == 0){
+                                     if(dupstatusList.size() == 0){
                                          empty_view.setText("Currently no other donors found");
                                          recyclerView.setVisibility(View.GONE);
                                      }
@@ -102,7 +102,7 @@ public class OtherDonatingAcitvity extends AppCompatActivity {
                                          empty_view.setVisibility(View.GONE);
                                          recyclerView.setVisibility(View.VISIBLE);
                                      }
-                                     statusAdapter.statusList = statusList;
+                                     statusAdapter.statusList = dupstatusList;
                                      statusAdapter.notifyDataSetChanged();
                                  } else {
 
